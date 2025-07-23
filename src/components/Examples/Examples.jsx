@@ -2,6 +2,7 @@ import { EXAMPLES } from "../../data";
 import TabButton from "../TabButton/TabButton";
 import { useState } from "react";
 import Section from "../Section/Section";
+import Tabs from "../Tabs/Tabs";
 
 export default function Examples() {
 	const [selectedTopic, setSelectedTopic] = useState("");
@@ -26,14 +27,16 @@ export default function Examples() {
 
 	return (
 		<Section title="Examples" id="examples">
-			<menu>
-				{Object.values(EXAMPLES).map((example) => (
+			<Tabs
+				buttonsContainer="menu"
+				buttons={Object.values(EXAMPLES).map((example) => (
 					<TabButton isSelected={selectedTopic === example.title.toLowerCase()} onClick={() => handleSelect(example.title.toLowerCase())}>
 						{example.title}
 					</TabButton>
 				))}
-			</menu>
-			{tabContent}
+			>
+				{tabContent}
+			</Tabs>
 		</Section>
 	);
 }
